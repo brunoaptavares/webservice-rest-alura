@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 
 public class Carrinho {
@@ -24,6 +25,10 @@ public class Carrinho {
 		return this;
 	}
 
+	public long getId() {
+		return id;
+	}
+
 	public Carrinho setId(long id) {
 		this.id = id;
 		return this;
@@ -39,10 +44,6 @@ public class Carrinho {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
-	}
-	
-	public long getId() {
-		return id;
 	}
 	
 	public void remove(long id) {
@@ -75,5 +76,9 @@ public class Carrinho {
 	
 	public String toXML() {
 	    return new XStream().toXML(this);
+	}
+	
+	public String toJson() {
+		return new Gson().toJson(this);
 	}
 }
