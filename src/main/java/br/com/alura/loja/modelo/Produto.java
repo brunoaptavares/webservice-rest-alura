@@ -1,6 +1,13 @@
 package br.com.alura.loja.modelo;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 
+import com.thoughtworks.xstream.XStream;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Produto {
 
 	private double preco;
@@ -8,6 +15,8 @@ public class Produto {
 	private String nome;
 	private int quantidade;
 	
+	Produto(){ }
+
 	public Produto(long id, String nome, double preco, int quantidade) {
 		this.id = id;
 		this.nome = nome;
@@ -37,5 +46,9 @@ public class Produto {
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	public String toXML() {
+	    return new XStream().toXML(this);
 	}
 }

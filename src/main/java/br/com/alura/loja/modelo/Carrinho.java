@@ -11,6 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Carrinho {
 
 	private List<Produto> produtos = new ArrayList<Produto>();
@@ -29,6 +31,10 @@ public class Carrinho {
 		return this;
 	}
 
+	public long getId() {
+		return id;
+	}
+
 	public Carrinho setId(long id) {
 		this.id = id;
 		return this;
@@ -41,12 +47,9 @@ public class Carrinho {
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
+
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
-	}
-	
-	public long getId() {
-		return id;
 	}
 	
 	public void remove(long id) {
@@ -76,5 +79,12 @@ public class Carrinho {
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
-
+	
+	public String toXML() {
+	    return new XStream().toXML(this);
+	}
+	
+	public String toJson() {
+		return new Gson().toJson(this);
+	}
 }
